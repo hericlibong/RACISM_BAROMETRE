@@ -52,14 +52,14 @@ Le volume du corpus résulte de la fenêtre et de la recherche. Il n'est pas fix
 
 ## Phase 3 — Prototype fonctionnel de collecte
 
-**État : non lancée.** Cette phase change de régime : après le cadrage et le pilote méthodologique, il faut maintenant tester concrètement comment retrouver et structurer les événements avec le moins de complexité possible.
+**État : en cours depuis le 23 août 2026.** Cette phase change de régime : après le cadrage et le pilote méthodologique, il faut maintenant tester concrètement comment retrouver et structurer les événements avec le moins de complexité possible.
 
 > **Principe directeur :** le corpus du 20 juillet–20 août 2026 devient un banc d’essai. La solution technique doit démontrer qu’elle sait accomplir la tâche avant qu’une architecture plus large soit envisagée.
 
 > **Garde-fou :** ne pas chercher la solution la plus complète. Chercher la solution minimale qui retrouve, déduplique et qualifie correctement les événements utiles. Toute complexité supplémentaire doit répondre à un besoin observé ou à un échec concret du test.
 
-- [ ] Définir le **format minimal de sortie** attendu pour un événement à partir du corpus pilote : identifiant, date, lieu, résumé court, nature, cible/dimension, contexte, sources et relation éventuelle avec un autre événement.
-- [ ] Transformer les 27 candidats du pilote en **banc d’essai fonctionnel**, sans les réexaminer : événements attendus, refus connus, cas incertains et exemples utiles de liaison ou de regroupement.
+- [x] Définir le **format minimal de sortie** attendu pour un événement à partir du corpus pilote : identifiant, date, lieu, résumé court, nature, cible/dimension, contexte, sources et relation éventuelle avec un autre événement.
+- [x] Transformer les 27 candidats du pilote en **banc d’essai fonctionnel**, sans les réexaminer : événements attendus, refus connus, cas incertains et exemples utiles de liaison ou de regroupement.
 - [ ] Identifier un petit nombre de **solutions techniques simples** permettant de rechercher des événements sur une période donnée : recherche Web assistée par agent, API ou agrégateur de presse, combinaison légère de recherche et traitement automatique, ou autre option concrète justifiée.
 - [ ] Tester les solutions retenues sur la **même fenêtre du 20 juillet au 20 août 2026**.
 - [ ] Comparer les résultats sur des critères concrets : événements connus retrouvés, nouveaux candidats utiles, faux positifs, doublons, qualité des dates et catégories extraites, effort humain restant, coût et contraintes d’accès.
@@ -142,3 +142,4 @@ Le terme « baromètre » décrit le résultat produit dans la durée ; il ne do
 | 2026-08-22 | Correction après revue Codex : ajout de C26 Aurignac et C27 Bois-d'Arcy, corroborés mais omis — corpus porté à 27 candidats, 22 admis, 3 incertains, 2 refusés, 0 rattaché. |
 | 2026-08-22 | Révision minimale de la méthode validée par Codex puis par l'utilisateur : Phase 2 terminée. |
 | 2026-08-22 | Réorientation fonctionnelle : le corpus pilote devient un banc d'essai pour comparer des solutions simples de collecte avant toute architecture plus large. |
+| 2026-08-23 | Bloc 1 de la Phase 3 validé après revue Codex : contrat minimal de sortie à neuf champs et banc d'essai de 27 attentes (22 retrouve, 2 rejete, 3 incertain). Phase 3 ouverte. |

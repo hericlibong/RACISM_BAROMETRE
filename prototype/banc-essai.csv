@@ -1,0 +1,28 @@
+id,attendu,date_repere,nature,relation,remarque
+C01,retrouve,2026-07-25,propos public,,
+C02,retrouve,2026-07-26,insulte,,
+C03,retrouve,2026-07-30,agression,,couverture locale
+C04,retrouve,2026-08-03/2026-08-04,dégradation ; symbole néonazi,,
+C05,retrouve,2026-08-06,dégradation,,
+C06,retrouve,2026-08-08,agression ; insulte,,
+C07,retrouve,,discrimination ; harcèlement,,date indéterminée ; révélation le 8 août
+C08,retrouve,2026-08-08,menace ; dégradation,,
+C09,retrouve,2026-08-09,agression,,
+C10,retrouve,,dégradation ; propos public,,date indéterminée ; signalement le 15 août ; couverture régionale
+C11,retrouve,~2026-08-11,menace,,
+C12,retrouve,2026-08-14,propos public,,
+C13,retrouve,2026-04-19,menace ; insulte,épisode judiciaire des 17-18 août ; fait antérieur à la fenêtre,
+C14,rejete,2026-08-14/2026-08-16,dégradation ; insulte,,résultat à rejeter : hostilité territoriale hors périmètre
+C15,retrouve,2026-08-18,propos public,relié à des propos antérieurs dont 2024 ; sans fusion ni comptage commun,événement de réponses
+C16,retrouve,2026-07-13,harcèlement,enquêtes ouvertes le 20 juillet,
+C17,incertain,2023-11-18/2023-11-19,agression,épisodes judiciaires des 23 juillet et 17 août,qualification disputée entre juges et parquet
+C18,retrouve,2026-07-30,propos public,,date du fait imprécise ; diffusion le 30 juillet
+C19,retrouve,2026-07-08,propos public,plainte annoncée le 24 juillet,
+C20,retrouve,2026-07,communication publique mise en cause,,qualification attribuée à des tiers et contestée
+C21,retrouve,2026-07-24/2026-07-26,discrimination,événement unique ; observations résultats et 8 plaintes rattachés,ne pas éclater en huit événements
+C22,incertain,2026-07-11,menace — soupçonnée,épisodes des 21 et 25 juillet,lien antisémite non établi
+C23,rejete,2026-07-08 ou 2026-07-16/2026-07-17,dégradation ; symbole néonazi,,hors fenêtre
+C24,retrouve,2026-05-27,agression ; insulte,épisode judiciaire du 21 juillet ; fait antérieur à la fenêtre,couverture locale ; audience correctionnelle
+C25,incertain,2026-07-18,agression ; entrave,épisodes des 21 et 24 juillet,aucune qualification raciste retenue
+C26,retrouve,2026-08-01/2026-08-02,agression ; insulte,,couverture locale
+C27,retrouve,2026-08-15/2026-08-16,dégradation ; symbole néonazi,,couverture locale et institutionnelle
