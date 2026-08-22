@@ -1,0 +1,13 @@
+# Réglages locaux de la machine (permissions Claude Code)
+.claude/settings.local.json
+
+# Systèmes de fichiers
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*~
