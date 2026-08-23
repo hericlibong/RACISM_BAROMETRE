@@ -1,57 +1,71 @@
-# Rapport Claude — Bloc 1 validé, roadmap à jour, commit
+# Rapport Claude — Bloc 2, première partie : présélection des solutions de collecte (v4)
 
 **Date :** 23 août 2026
+**Statut : ajustements de la revue Codex v3 appliqués. Aucun smoke test exécuté.**
 
-## 1. Mise à jour de la roadmap
+## 1. Les quatre ajustements demandés
 
-Trois écritures dans `docs/ROADMAP.md`, comme annoncé :
+| # | Demande Codex | Vérification | Correction |
+|---|---|---|---|
+| 1 | Le smoke test contenait encore quatre solutions malgré l'annonce « une par famille » | Fondé — contradiction interne | **Trois finalistes : OpenAI web search · Brave Search · GDELT.** Anthropic, Tavily et Google News RSS deviennent des solutions de secours, non testées au premier tour |
+| 2 | Les accès API ne sont pas établis ; « aucun compte nouveau » supposait une clé Anthropic non vérifiée | Fondé. Le fait que Claude Code fonctionne ne démontre pas la disposition d'une clé API facturable | Motif supprimé. **Deux points de décision explicites** ajoutés au §9, et la ligne « Authentification » du tableau comparatif passe de ✅ à ❓ pour la famille A |
+| 3a | GDELT documente un plafond de 250 résultats en `ArticleList` | **Confirmé sur la documentation officielle** : `MAXRECORDS`, 75 par défaut, 250 au maximum. J'avais écrit « non documenté » | Corrigé au §5 et dans le tableau |
+| 3b | Le tarif OpenAI doit venir de la page officielle ; les 25 $ concernent l'ancien outil preview avec modèles non raisonnants | **Confirmé sur la page tarifaire officielle** : outil actuel **10 $/1 000 appels**, tokens au tarif du modèle. Ma formulation « 10 $ sur modèles de raisonnement, 25 $ sur les autres » était fausse | Corrigé et sourcé sur la page tarifaire officielle |
 
-1. **Deux tâches cochées** — « Définir le format minimal de sortie » et « Transformer les 27 candidats en banc d'essai fonctionnel ».
-2. **État de la Phase 3** — « non lancée » → « **en cours depuis le 23 août 2026** ».
-3. **Ligne d'historique** — « Bloc 1 de la Phase 3 validé après revue Codex : contrat minimal de sortie à neuf champs et banc d'essai de 27 attentes (22 retrouve, 2 rejete, 3 incertain). Phase 3 ouverte. »
+## 2. Les trois finalistes
 
-Phase 3 : **2 cochées, 5 ouvertes**. Décompte global : **25 cochées / 21 ouvertes**.
+| Famille | Finaliste | Motif | Reléguée en secours |
+|---|---|---|---|
+| **A — Agentique** | **OpenAI web search** | L'option la plus proche de l'expérience initiale du projet, et **la seule de sa famille à exposer la liste complète des URL consultées** (`sources`) — donc la seule à fournir une matière à déduplication comparable aux autres familles. Même tarif | Anthropic `web_search` |
+| **B — API filtrable** | **Brave Search** | 5 $/1 000 contre un palier à 30 $/mois pour Tavily au même volume ; seule à cumuler endpoint news, `country`, `search_lang` et plage de dates personnalisée | Tavily |
+| **C — Index gratuit** | **GDELT** | Documentation officielle, URL primaires, aucune authentification. Google News RSS n'a aucune documentation officielle ni engagement de service | Google News RSS |
 
-Les Phases 4 et 5 sont inchangées, toujours « non lancée ».
+J'ai suivi la recommandation de Codex sur les trois. Le seul point où je l'aurais formulé autrement : Google News RSS reste l'option la plus prometteuse sur la couverture locale française, et c'est écrit — elle passe après, elle n'est pas enterrée.
 
-## 2. Livrables du Bloc 1
+## 3. Deux questions qui vous reviennent avant tout test
 
-| Fichier | Contenu |
+**Quels accès API possédez-vous réellement ?** Deux finalistes sur trois en dépendent :
+
+- **OpenAI** — une clé API, distincte d'un abonnement ChatGPT ? La recherche avancée qui a produit les samples passait par l'interface, pas nécessairement par l'API.
+- **Anthropic** — une clé utilisable pour l'outil `web_search` facturé ? Que Claude Code fonctionne ne le démontre pas.
+
+**Le compte Brave.** La famille B est intestable sans compte ni clé, ce que la consigne du Bloc 2 interdit. **Je ne créerai aucun compte à votre place.** Vous créez le compte et fournissez la clé (5 $ de crédits mensuels — le test serait gratuit), ou on reporte B après A et C, ou on l'écarte.
+
+**Conséquence** : selon vos réponses, le smoke test portera sur trois familles, deux, ou la seule famille C — la seule à ne rien exiger.
+
+## 4. Fichiers
+
+| Fichier | Nature |
 |---|---|
-| `prototype/FORMAT-MINIMAL.md` | Contrat logique à neuf champs, indépendant du support, avec les deux justifications chiffrées corrigées |
-| `prototype/banc-essai.csv` | 27 lignes, six colonnes : `id`, `attendu`, `date_repere`, `nature`, `relation`, `remarque` |
+| `prototype/bloc-2/SELECTION.md` | Unique livrable — **v4**, 11 sections |
+| `.ai/claude-report.md` | Ce rapport |
 
-## 3. Commit
-
-Un seul commit, sans push.
-
-Contenu, conforme à ce que la revue autorisait :
-
-- les deux livrables du prototype ;
-- `docs/ROADMAP.md` ;
-- les rapports croisés `.ai/claude-report.md` et `.ai/codex-review.md`.
-
-Aucun autre fichier n'a été indexé — vérifié avant validation du commit.
-
-## 4. Vérifications avant commit
-
-| Contrôle | Résultat |
-|---|---|
-| Banc d'essai | 27 lignes ; 22 `retrouve`, 2 `rejete`, 3 `incertain` |
-| Identifiants C01 à C27 | complets, une seule fois chacun |
-| Concordance `attendu` ↔ statut du §12 | parfaite sur les 27 |
-| Affirmations chiffrées du contrat | corrigées et revérifiées |
-| Phase 3 | 2 cochées / 5 ouvertes |
-| Phases 4 et 5 | inchangées |
-| Fichiers indexés | uniquement les quatre prévus |
+Format minimal, banc d'essai et corpus pilote non modifiés. `.ai/codex-review.md` non modifié.
 
 ## 5. Confirmations
 
-- **Aucun push.** Aucun remote n'est configuré.
-- Aucun tag créé, aucune configuration Git modifiée.
-- Aucune recherche lancée, aucun candidat rouvert, aucun statut modifié.
-- **Le Bloc 2 n'est pas commencé.**
+- **Aucun smoke test, aucun benchmark, aucun appel expérimental à une API de collecte.** Les capacités décrites viennent de documentation lue.
+- **Aucun compte créé, aucun abonnement souscrit, aucune dépense engagée.**
+- Aucun développement, aucune installation, aucun choix définitif de solution.
+- Le Bloc 3 n'est pas commencé.
+- **Roadmap inchangée** : 25 cochées / 21 ouvertes — aucune tâche du Bloc 2 cochée.
+- **Git** : deux commits, aucun nouveau ; rien en staging ; aucun tag ; configuration inchangée.
 
-## 6. Suite
+## 6. Revue Codex de la v4 et suite décidée
 
-Le Bloc 2 porte sur l'identification d'un petit nombre de solutions techniques simples, puis leur test sur la même fenêtre du 20 juillet au 20 août 2026. Il n'est pas engagé.
+**Verdict Codex : validée.** Les quatre ajustements sont constatés présents, le choix des trois finalistes est jugé cohérent, et aucun test, script, compte ni appel API n'a été réalisé.
+
+Un point utile ajouté par la revue : **une clé Anthropic n'est plus nécessaire** au premier smoke test, puisque cette solution est passée en secours. Il ne reste donc que **deux** questions d'accès — clé OpenAI facturable, et décision sur le compte Brave — au lieu de trois.
+
+Codex conclut par : « La roadmap doit rester inchangée et aucun commit ne doit être créé pour l'instant. »
+
+**Décision de l'utilisateur : ne rien committer.** La position de Codex est suivie à la lettre.
+
+- Aucun commit, aucun staging, aucun tag, aucune modification de configuration Git.
+- Roadmap inchangée : **25 cochées / 21 ouvertes**, aucune case du Bloc 2 cochée.
+- `prototype/bloc-2/` reste en non suivi dans git.
+- Le smoke test n'est pas lancé et attend les réponses sur les accès.
+
+---
+
+**La v4 est validée sur le fond, non committée.** Le smoke test attend vos réponses sur les deux accès.

@@ -1,25 +1,26 @@
-# Revue Codex — Correction du Bloc 1 de la Phase 3
+# Revue Codex — présélection v4 du Bloc 2
 
 **Date :** 23 août 2026  
-**Verdict : validé. Le Bloc 1 peut être clôturé et committé après mise à jour de la roadmap.**
+**Verdict : validée. Le smoke test reste en attente des accès nécessaires.**
 
-La correction demandée est présente dans le fichier réel : `cible_dimension` indique maintenant exactement deux candidats sans cible déterminable, **C03 et C17**, conformément aux sections 12 et 13 du corpus pilote.
+Les quatre ajustements demandés sont présents dans le rapport et dans `prototype/bloc-2/SELECTION.md` :
 
-Claude a également relevé et corrigé une seconde inexactitude dans la justification du champ `date`. Le nouveau décompte est exact :
+- trois finalistes exactement, un par famille : OpenAI Web Search, Brave Search et GDELT ;
+- Anthropic, Tavily et Google News RSS conservés comme solutions de secours, hors du premier smoke test ;
+- disponibilité des clés API explicitement non supposée ;
+- plafond GDELT corrigé à 75 résultats par défaut et 250 au maximum ;
+- tarif OpenAI corrigé et relié à la documentation officielle ;
+- aucun test, script, compte, abonnement ou appel API réalisé.
 
-- aucune date exploitable pour C07 et C10 ;
-- date approximative pour C11, C18, C20 et C23.
+Le choix des trois finalistes est cohérent : OpenAI représente la recherche agentique la plus proche de l’expérience initiale, Brave l’API filtrable, et GDELT l’index gratuit sans authentification.
 
-La formulation « deux candidats sans date exploitable et quatre avec une date approximative » est donc validée. Elle ne change ni le contrat, ni les données du banc d’essai, ni la qualification des candidats.
+Deux décisions opérationnelles sont maintenant nécessaires avant le smoke test :
 
-Les contrôles précédents restent valables : 27 identifiants uniques, répartition 22/2/3 exacte, cas C14/C15/C21 correctement représentés, aucun travail du Bloc 2, aucun staging et aucun nouveau commit.
+1. confirmer la disponibilité d’une clé API OpenAI facturable, distincte d’un abonnement ChatGPT ;
+2. décider si l’utilisateur souhaite créer lui-même un compte Brave et fournir une clé de test.
 
-Claude peut maintenant effectuer uniquement les opérations de clôture annoncées :
+Une clé Anthropic n’est pas nécessaire pour le premier smoke test puisque cette solution est désormais en secours.
 
-1. cocher les deux premières tâches de la Phase 3 dans `docs/ROADMAP.md` ;
-2. passer la Phase 3 à « en cours » au 23 août 2026 ;
-3. ajouter une ligne d’historique concise sur la validation du Bloc 1 ;
-4. actualiser son rapport ;
-5. committer les deux livrables du prototype, la roadmap et les rapports croisés.
+Sans clé OpenAI ni Brave, seul GDELT pourra être testé, ce qui ne permettra pas une comparaison suffisante entre les trois familles. Après clarification des accès, un banc Python minimal pourra être préparé pour exécuter les mêmes objectifs, conserver les sorties brutes et mesurer les appels sans construire le pipeline final.
 
-Ne pas commencer le Bloc 2 dans ce commit et ne pas pousser le commit.
+La roadmap doit rester inchangée et aucun commit ne doit être créé pour l’instant.
