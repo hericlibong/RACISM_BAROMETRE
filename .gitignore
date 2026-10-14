@@ -11,3 +11,20 @@ desktop.ini
 .idea/
 *.swp
 *~
+
+# Secrets locaux
+.env
+.env.*
+!.env.example
+
+# Environnement Python local
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Données produites localement par la collecte
+data/raw/*.json
+
+# Sorties brutes historiques des essais (peuvent contenir des identifiants opaques)
+prototype/bloc-2/resultats/

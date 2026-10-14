@@ -1,0 +1,18 @@
+# Requêtes historiques du test Google News RSS
+"acte raciste"
+"agression raciste"
+"injures racistes"
+"propos racistes"
+"insultes racistes"
+"tags racistes"
+"acte antisémite"
+"propos antisémites"
+"tags antisémites"
+"croix gammée"
+"discrimination raciale"
+"provocation à la haine raciale"
+
+# Formulations ajoutées à partir des manques observés
+"circonstance aggravante de racisme"
+"affiche raciste" OR "campagne raciste"
+"réservé aux Blancs" OR "réservée aux Blancs"

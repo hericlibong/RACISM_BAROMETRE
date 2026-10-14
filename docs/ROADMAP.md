@@ -1,145 +1,190 @@
-# Roadmap
+# Roadmap de réalisation du baromètre
 
-Cette roadmap suit l'avancement réel du baromètre. Elle doit rester courte et être corrigée lorsque l'expérience invalide une étape prévue.
+Cette roadmap prend effet le **14 octobre 2026**. Elle repart du travail déjà accompli et organise la suite jusqu'à une application utilisable.
 
-La boussole éditoriale du projet est résumée dans [`MOTIVATION.md`](MOTIVATION.md). Elle éclaire les choix futurs sans ajouter de tâches au pilote.
+La roadmap précédente est conservée sans modification dans [`archives/ROADMAP-avant-reprise-2026-10-14.md`](archives/ROADMAP-avant-reprise-2026-10-14.md). Elle documente le cadrage, le pilote méthodologique et les essais de solutions réalisés entre le 20 et le 24 août 2026.
 
-## Règles de suivi
+## Objectif du projet
+
+Construire une application qui collecte régulièrement les faits, actes et paroles liés au racisme, à l'antisémitisme, à la xénophobie et au néonazisme rapportés dans les médias en France, puis :
+
+1. identifie les événements derrière les articles ;
+2. regroupe les articles qui parlent du même événement ;
+3. classe les événements par date, lieu, nature, communauté ou dimension visée et contexte ;
+4. produit un résumé ou commentaire court, fidèle aux sources ;
+5. restitue leur évolution dans le temps jusqu'à l'élection présidentielle de 2027 ;
+6. permet plus tard d'étudier leur circulation médiatique, les réactions et les réactivations.
+
+Le baromètre porte sur les **faits médiatisés détectés par une méthode stable**. Il ne prétend pas mesurer tous les faits survenus ni démontrer à l'avance une hausse. Il doit pouvoir montrer une hausse, une stabilité ou une baisse du nombre d'événements documentés.
+
+## Décisions acquises au point de reprise
+
+- Les phases de cadrage et de pilote méthodologique sont terminées.
+- Le corpus du 20 juillet au 20 août 2026 reste un banc d'essai historique ; il ne doit pas être réexaminé avant de construire l'application.
+- Un article n'est pas une unité de comptage : plusieurs articles peuvent documenter un même événement.
+- La collecte ne repose pas sur un tri éditorial lourd préalable. Elle conserve les résultats relevant du domaine, écarte le hors-sujet manifeste et regroupe les doublons.
+- **Google News RSS est retenu comme collecteur principal de départ.** Sur le banc d'essai, il a retrouvé 20 des 22 faits admis après contrôle manuel, avec 439 articles, 387 titres distincts et 139 médias, sans coût ni compte.
+- Les deux faits manqués par Google News RSS révèlent d'abord une limite du lexique de requêtes. Le jeu de requêtes sera donc ajusté progressivement à partir des manques observés.
+- OpenAI Web Search, GDELT ou une autre source ne seront ajoutés à la collecte que si un angle mort concret et répété le justifie.
+- La forme finale de la visualisation n'est pas décidée. La heatmap, la timeline et d'autres représentations seront comparées sur les données réelles de l'application.
+- La circulation sociale, les réactions politiques et les mesures d'engagement sont des enrichissements ultérieurs ; elles ne bloquent pas la première application.
+
+## Règles de conduite
 
 - Une tâche est cochée seulement lorsqu'elle est réalisée et vérifiée.
-- Une question future ne bloque pas le projet sauf si elle est explicitement nécessaire à l'étape suivante.
-- Les faits découverts peuvent faire revenir sur le cadrage.
-- Aucun choix technique n'est engagé avant une expérience réelle de recherche et de traitement.
+- Construire le circuit complet avant d'ajouter des raffinements.
+- Ne pas relancer une comparaison générale des collecteurs sans échec concret de Google News RSS.
+- Ne pas transformer la collecte en enquête exhaustive ou en fact-checking.
+- Ne rechercher une information complémentaire que si elle est nécessaire pour identifier, regrouper, classer ou formuler correctement un événement.
+- Conserver les données brutes afin de pouvoir corriger le traitement sans relancer la collecte.
+- Toute complexité nouvelle doit répondre à un besoin rencontré dans l'application.
 
-## Phase 1 — Recadrage méthodologique
+## Acquis conservés
 
-**État : terminée et validée par l'utilisateur le 21 août 2026.** Le cadrage initial du 20 août a été réouvert puis simplifié après lecture des samples et des recadrages utilisateur.
+Les éléments suivants restent des références du projet :
 
-- [x] Lire le recadrage méthodologique et suspendre les phases suivantes.
-- [x] Examiner les samples existants comme matériau brut non vérifié.
-- [x] Simplifier `CORPUS-PILOTE.md` : supprimer quotas, composition artificielle et couverture obligatoire des cas limites.
-- [x] Simplifier `METHODOLOGIE.md` : séparer détection et admission, rouvrir la temporalité, faire émerger la taxonomie.
-- [x] Alléger `DECISIONS.md` : conserver les décisions structurantes et repousser les questions non urgentes.
-- [x] Simplifier `MODELE-ET-WORKFLOW.md` : support souple et qualification minimale, sans schéma technique présumé.
-- [x] Ajuster `CADRAGE.md`, le README et les instructions persistantes aux principes du recadrage.
-- [x] Intégrer les dernières corrections : fenêtre pilote, benchmark, temporalité des épisodes et vocabulaire judiciaire prudent.
-- [x] Figer la fenêtre pilote : **20 juillet–20 août 2026**.
-- [x] Effectuer la revue finale de cohérence et obtenir la validation utilisateur.
+- le cadrage éditorial dans `CADRAGE.md` ;
+- la méthode et ses règles de prudence dans `METHODOLOGIE.md` ;
+- les décisions acquises dans `DECISIONS.md` ;
+- le journal du pilote dans `PILOTE-20JUIL-20AOUT-2026.md` ;
+- le banc d'essai de 27 cas dans `prototype/banc-essai.csv` ;
+- le format minimal d'un événement dans `prototype/FORMAT-MINIMAL.md` ;
+- les scripts et sorties des essais OpenAI, GDELT et Google News RSS dans `prototype/bloc-2/`.
 
-**Sortie de phase :** une documentation légère qui autorise une vraie recherche exploratoire sans prédéterminer son corpus.
+Ils servent de mémoire et de référence. Ils ne constituent plus une phase à recommencer.
 
-## Phase 2 — Recherche pilote réelle
+Le dossier `prototype/` conserve désormais les essais, leurs scripts et leurs résultats historiques. **Le code de l'application n'y sera pas développé.** Il sera créé dans une structure de production à la racine du projet ; seuls les éléments utiles des prototypes y seront repris, sans déplacer ni renommer les preuves des essais passés.
 
-**État : terminée le 22 août 2026**, après revue Codex et validation de l'utilisateur. Fenêtre : **20 juillet–20 août 2026**.
+## Phase 1 — Consolider le point de reprise
 
-**Sortie de phase :** 27 candidats qualifiés — 22 admis, 3 incertains, 2 refusés — un relevé des catégories réellement apparues, un journal des frictions et un bilan de charge, ayant conduit à une révision minimale de la méthode.
+**État : en cours depuis le 14 octobre 2026.** Cette phase prépare un socle de développement propre sans rouvrir l'étude méthodologique.
 
-- [x] Préparer un support simple pour consigner requêtes, candidats, documents et décisions.
-- [x] Définir une procédure minimale de conservation des pages consultées pendant l'essai.
-- [x] Effectuer une première passe de recherche Web documentée, nationale et locale.
-- [x] Approfondir les recherches ciblées et les sources encore inaccessibles ou insuffisantes.
-- [x] Conserver tous les candidats plausibles, y compris incomplets, ambigus ou finalement refusés.
-- [x] Effectuer une première comparaison au benchmark informel : événements retrouvés, manqués et nouveaux candidats.
-- [x] Analyser pourquoi les événements connus non retrouvés ont été manqués.
-- [x] Commencer le rapprochement et distinguer provisoirement faits, épisodes et reprises.
-- [x] Qualifier chaque candidat : admission, rattachement et classification minimale.
-- [x] Relever les catégories apparues, sans liste fermée.
-- [x] Tenir le journal des frictions et des cas limites réellement rencontrés.
-- [x] Mesurer la charge jusqu'à une qualification minimale suffisante.
-- [x] Réviser la méthode à partir de l'expérience et la soumettre à revue.
+- [x] Archiver sans modification la roadmap précédente.
+- [x] Acter Google News RSS comme collecteur principal de départ.
+- [x] Écrire la roadmap de réalisation allant de la collecte à l'application.
+- [x] Mettre le README et les documents d'état en cohérence avec cette reprise, sans réécrire les archives du pilote.
+- [x] Consolider dans Git les scripts et rapports historiques utiles actuellement non suivis, en les distinguant clairement du futur code de production ; conserver hors Git les sorties API brutes pouvant contenir des identifiants opaques.
+- [x] Créer à la racine une structure minimale pour le véritable baromètre, séparée de `prototype/`, sans déplacer les archives ni engager une réorganisation générale inutile.
+- [x] Définir à la racine la gestion des dépendances de l'application ; utiliser `prototype/bloc-2/requirements.txt` comme inventaire de départ, et non comme manifeste définitif du produit.
+- [x] Recréer un environnement Python fonctionnel depuis cette configuration racine et supprimer l'ambiguïté avec le `Pipfile` vide.
+- [x] Reprendre dans le code de production uniquement la logique utile du collecteur Google News RSS ; conserver le script expérimental intact comme référence.
+- [x] Vérifier qu'une commande locale unique permet de lancer la collecte Google News RSS sans appel payant.
 
-Le volume du corpus résulte de la fenêtre et de la recherche. Il n'est pas fixé par quota.
+**Sortie de phase : atteinte le 14 octobre 2026.** Le dépôt possède une seule roadmap active, un environnement Python 3.12 fonctionnel, un socle applicatif séparé des prototypes et une commande de collecte vérifiée en mode sans réseau.
 
-## Phase 3 — Prototype fonctionnel de collecte
+## Phase 2 — Construire le moteur de collecte
 
-**État : en cours depuis le 23 août 2026.** Cette phase change de régime : après le cadrage et le pilote méthodologique, il faut maintenant tester concrètement comment retrouver et structurer les événements avec le moins de complexité possible.
+**État : non lancée.** L'objectif est un collecteur réutilisable, pas un nouveau smoke test.
 
-> **Principe directeur :** le corpus du 20 juillet–20 août 2026 devient un banc d’essai. La solution technique doit démontrer qu’elle sait accomplir la tâche avant qu’une architecture plus large soit envisagée.
+- [ ] Implémenter dans le code de l'application un module de collecte configurable fondé sur les enseignements du script Google News RSS expérimental, sans faire dépendre le produit du dossier `prototype/`.
+- [ ] Sortir les requêtes, la langue, le pays et la fenêtre temporelle du code afin de pouvoir les modifier sans réécrire le collecteur.
+- [ ] Reprendre le lexique testé et ajouter les formulations correspondant aux manques déjà observés, notamment les campagnes ou communications stigmatisantes, les circonstances aggravantes et les séquences de réponses publiques.
+- [ ] Collecter pour chaque article : titre, média, date de publication, lien Google, domaine du média, requête d'origine et horodatage de collecte.
+- [ ] Conserver la réponse brute ou les données suffisantes pour rejouer le traitement sans rappeler Google News.
+- [ ] Rendre la collecte idempotente : relancer une même fenêtre ne doit pas multiplier les mêmes articles.
+- [ ] Détecter et consigner les requêtes qui atteignent le plafond de résultats.
+- [ ] Définir une stratégie proportionnée pour les URL : conserver d'abord le lien Google et le domaine du média, puis résoudre l'URL d'origine seulement lorsque cela est utile et fiable.
+- [ ] Exécuter la collecte sur une fenêtre récente et vérifier le fonctionnement technique, sans refaire une qualification exhaustive du benchmark historique.
 
-> **Garde-fou :** ne pas chercher la solution la plus complète. Chercher la solution minimale qui retrouve, déduplique et qualifie correctement les événements utiles. Toute complexité supplémentaire doit répondre à un besoin observé ou à un échec concret du test.
+**Sortie de phase :** une commande reproductible produit un ensemble d'articles datés, traçables et réutilisables pour une période donnée.
 
-- [x] Définir le **format minimal de sortie** attendu pour un événement à partir du corpus pilote : identifiant, date, lieu, résumé court, nature, cible/dimension, contexte, sources et relation éventuelle avec un autre événement.
-- [x] Transformer les 27 candidats du pilote en **banc d’essai fonctionnel**, sans les réexaminer : événements attendus, refus connus, cas incertains et exemples utiles de liaison ou de regroupement.
-- [ ] Identifier un petit nombre de **solutions techniques simples** permettant de rechercher des événements sur une période donnée : recherche Web assistée par agent, API ou agrégateur de presse, combinaison légère de recherche et traitement automatique, ou autre option concrète justifiée.
-- [ ] Tester les solutions retenues sur la **même fenêtre du 20 juillet au 20 août 2026**.
-- [ ] Comparer les résultats sur des critères concrets : événements connus retrouvés, nouveaux candidats utiles, faux positifs, doublons, qualité des dates et catégories extraites, effort humain restant, coût et contraintes d’accès.
-- [ ] Choisir la **solution la plus simple suffisamment efficace**. Ne pas retenir une architecture plus complexe si une solution légère accomplit correctement la tâche.
-- [ ] Réaliser un premier passage de bout en bout avec la solution retenue : **période → recherche → candidats → déduplication → qualification minimale → sortie structurée**.
+## Phase 3 — Passer des articles aux événements
 
-**Sortie de phase :** une méthode de collecte techniquement testée sur le corpus pilote, un format minimal d’événement et une solution retenue sur preuves plutôt que sur hypothèses.
+**État : non lancée.** Cette phase transforme la collecte médiatique en matière exploitable par le baromètre.
 
-Cette phase ne construit pas encore le site final, ne met pas en place de pipeline industriel et ne traite pas encore systématiquement les réseaux sociaux.
+- [ ] Définir le support de stockage le plus simple pour les articles, les événements et leurs relations ; SQLite est l'option de départ à confirmer lors de l'implémentation.
+- [ ] Importer les articles collectés sans perte de leur provenance.
+- [ ] Regrouper les doublons exacts et proposer le rattachement des articles parlant du même fait.
+- [ ] Permettre la correction manuelle d'un regroupement sans modifier les données brutes.
+- [ ] Produire pour chaque événement les informations minimales déjà établies : identifiant, date du fait, lieu, résumé, nature, cible ou dimension, contexte, sources et relation éventuelle.
+- [ ] Distinguer la date de publication de la date du fait et conserver une précision variable lorsqu'une date exacte n'est pas connue.
+- [ ] Générer un résumé ou commentaire court qui attribue clairement les accusations, contestations ou qualifications lorsqu'elles ne sont pas établies directement.
+- [ ] Écarter uniquement le hors-sujet manifeste ; ne pas créer une procédure d'admission lourde en amont.
+- [ ] Vérifier le traitement sur un ensemble réduit d'événements réels, puis corriger seulement les erreurs qui empêchent leur regroupement, leur classement ou leur lecture.
 
-## Phase 4 — Structuration et première restitution
+**Sortie de phase :** une base d'événements reliés à leurs articles sources, avec une classification et une formulation exploitables.
 
-**État : non lancée.** Elle commence seulement lorsque la collecte fonctionnelle a été testée et qu’un format minimal d’événement a fait ses preuves.
+## Phase 4 — Construire l'application minimale
 
-- [ ] Choisir le support de données le plus simple compatible avec la solution retenue et les événements réellement produits.
-- [ ] Stabiliser uniquement les catégories utiles pour comprendre, filtrer, regrouper et visualiser les événements, sans créer de taxonomie nouvelle.
-- [ ] Importer le corpus pilote et un premier résultat de collecte dans ce support.
-- [ ] Produire une première restitution temporelle simple : liste chronologique, timeline ou graphique léger.
-- [ ] Vérifier ce que la restitution rend lisible et quelles données sont réellement manquantes avant d’ajouter de nouveaux champs.
-- [ ] Si nécessaire, réaliser une première interface minimale permettant d’explorer les événements et leurs sources.
+**État : non lancée.** La première version doit rendre le baromètre consultable avant de chercher sa forme graphique définitive.
 
-**Sortie de phase :** des événements structurés dans un support simple et une première représentation concrète du baromètre.
+- [ ] Choisir une pile technique légère adaptée à une application locale puis publiable.
+- [ ] Créer une vue chronologique des événements.
+- [ ] Créer une fiche d'événement avec résumé, classification, dates, lieu et articles sources.
+- [ ] Ajouter des filtres par période, nature, communauté ou dimension visée, contexte et territoire.
+- [ ] Afficher les nombres d'événements par jour, semaine et mois sans les confondre avec le nombre d'articles.
+- [ ] Permettre la consultation et la correction des regroupements et classifications.
+- [ ] Afficher clairement la méthode, le périmètre et la date de dernière collecte.
+- [ ] Vérifier que l'application reste utilisable avec plusieurs articles rattachés au même événement.
 
-> **Garde-fou :** un événement correctement qualifié en Phase 2 n’est pas revérifié ici sauf si sa transformation en donnée ou en restitution révèle un problème concret.
+**Sortie de phase :** une application utilisable permet d'explorer les événements, leurs catégories et leurs sources dans le temps.
 
-## Phase 5 — Mise en fonctionnement récurrente
+## Phase 5 — Concevoir la visualisation du baromètre
 
-**État : non lancée.** Elle consiste à rendre reproductible la collecte retenue, sans transformer le projet en infrastructure lourde.
+**État : non lancée.** Le design est décidé sur l'application et ses données réelles, pas à l'avance.
 
-- [ ] Rejouer la collecte sur une nouvelle fenêtre réelle.
-- [ ] Identifier les opérations qui nécessitent encore une intervention humaine.
-- [ ] Automatiser uniquement les opérations répétitives dont le gain est démontré.
-- [ ] Définir une cadence de collecte et de mise à jour soutenable.
-- [ ] Maintenir une qualification humaine minimale uniquement là où elle reste nécessaire.
+- [ ] Définir les questions que la visualisation doit permettre de lire immédiatement.
+- [ ] Prototyper une timeline simple comme référence de lisibilité.
+- [ ] Prototyper la heatmap ou heatmap-timeline envisagée initialement.
+- [ ] Comparer les représentations sur les mêmes données : évolution temporelle, densité, catégories, filtres et accès aux faits.
+- [ ] Retenir une représentation principale et, seulement si utile, une représentation complémentaire.
+- [ ] Vérifier que les variations affichées décrivent les événements documentés et non une mesure exhaustive du racisme en France.
+- [ ] Intégrer la visualisation retenue dans l'application.
 
-## Phase 6 — Enrichissements éditoriaux
+**Sortie de phase :** le baromètre possède une représentation temporelle lisible, fidèle aux données et reliée aux événements sources.
 
-**État : non lancée.** Ces éléments donnent sa profondeur éditoriale au baromètre mais ne conditionnent pas le fonctionnement de base.
+## Phase 6 — Mettre la collecte en fonctionnement récurrent
 
-- [ ] Structurer la circulation médiatique et les réactivations d’un fait lorsque ces données sont accessibles.
-- [ ] Intégrer les réactions politiques et institutionnelles utiles.
-- [ ] Étudier les plateformes sociales et les métriques réellement accessibles : reprises, engagement, durée de circulation, réactivation.
-- [ ] Examiner comment documenter, sans fabriquer d’indice artificiel, les signes éventuels de banalisation ou de tolérance croissante.
-- [ ] Enrichir les visualisations et les filtres à partir des données réellement disponibles.
+**État : non lancée.** Cette phase transforme l'application en outil de suivi jusqu'à l'élection présidentielle de 2027.
 
-## Règle de régime à partir de la Phase 3
+- [ ] Définir une cadence de collecte soutenable.
+- [ ] Collecter uniquement les nouvelles fenêtres et conserver l'historique des passages.
+- [ ] Automatiser l'import, le rapprochement et la préparation de la classification.
+- [ ] Prévoir une file simple pour les événements nécessitant une correction humaine.
+- [ ] Journaliser les erreurs de collecte, les requêtes saturées et les changements du lexique.
+- [ ] Contrôler périodiquement quelques résultats pour détecter une dérive de couverture, sans refaire une vérification exhaustive.
+- [ ] Ajouter un collecteur complémentaire seulement si un manque récurrent est démontré et si ce complément apporte des événements que Google News RSS ne trouve pas.
+- [ ] Préparer le déploiement, la sauvegarde des données et la reprise après incident.
 
-À partir de cette phase, le projet n’avance plus par ajout de documentation théorique.
+**Sortie de phase :** l'application se met à jour régulièrement avec une intervention humaine limitée aux corrections utiles.
 
-Toute nouvelle règle, couche technique, vérification ou structure doit être justifiée par l’un des éléments suivants :
+## Phase 7 — Enrichissements éditoriaux
 
-1. un besoin concret observé dans le corpus ;
-2. un échec mesuré lors d’un test fonctionnel ;
-3. une nécessité indispensable pour exploiter ou afficher les données.
+**État : ultérieure.** Ces fonctions approfondissent le projet mais ne bloquent ni la collecte ni le baromètre initial.
 
-À défaut, ne pas l’ajouter.
+- [ ] Mesurer la durée et le volume de la couverture médiatique d'un événement.
+- [ ] Structurer les réactions politiques, institutionnelles et associatives.
+- [ ] Identifier les réactivations d'anciens faits.
+- [ ] Étudier les plateformes sociales et les métriques réellement accessibles.
+- [ ] Identifier les observatoires, associations, médias ou sites spécialisés qui collectent déjà des faits comparables, ainsi que les applications qui les présentent ou les visualisent.
+- [ ] Relever seulement ce qui peut enrichir concrètement le baromètre : sources originales, types d'événements couverts, catégories utiles, modes de visualisation et conditions d'accès aux données.
+- [ ] Intégrer une source spécialisée uniquement si elle apporte une information ou une couverture absente de la collecte principale, sans remplacer ni compliquer inutilement Google News RSS.
+- [ ] Ajouter des analyses périodiques courtes à partir des événements documentés.
+- [ ] Examiner les signes de banalisation ou de tolérance sans fabriquer d'indice opaque.
 
-La question prioritaire devient :
+## Définition de la première application terminée
 
-> **Quelle est la manière la plus simple de retrouver, normaliser et restituer les événements d’une période donnée ?**
+La première application est considérée comme fonctionnelle lorsqu'elle peut :
 
-Le terme « baromètre » décrit le résultat produit dans la durée ; il ne doit plus provoquer de surarchitecture en amont.
+1. collecter une période avec Google News RSS ;
+2. conserver les articles et leur provenance ;
+3. regrouper plusieurs articles sous un même événement ;
+4. produire et corriger une classification et un résumé court ;
+5. afficher une liste temporelle, des compteurs et des filtres ;
+6. ouvrir les sources d'un événement ;
+7. être relancée sur une nouvelle période sans créer de doublons.
+
+La heatmap, les réseaux sociaux et l'analyse approfondie de la circulation ne conditionnent pas cette première version.
+
+## Prochaine étape
+
+Terminer la **Phase 1 — Consolider le point de reprise**, puis commencer immédiatement le moteur de collecte Google News RSS. Aucune nouvelle comparaison générale de solutions n'est requise avant cela.
 
 ## Historique
 
 | Date | Évolution |
 |---|---|
-| 2026-08-20 | Cadrage documentaire initial. |
-| 2026-08-21 | Recadrage : phase 1 réouverte, corpus réel prioritaire, suppression des quotas, du modèle technique anticipé et de la logique de produit minimum. |
-| 2026-08-21 | Phase 1 validée par l'utilisateur ; ouverture de la recherche pilote réelle. |
-| 2026-08-21 | Première passe Web consignée : benchmark comparé, nouveaux candidats conservés et premiers rapprochements éditoriaux amorcés. |
-| 2026-08-21 | Approfondissement ciblé effectué et causes des manques analysées : benchmark requalifié comme collecte assistée par IA, bloc Finistère redaté, candidats C16–C22 précisés, Thionville examiné et classé hors fenêtre. |
-| 2026-08-21 | Couverture du 20 au 24 juillet : cinq épisodes documentés, deux fausses pistes écartées, chiffres de contexte CNCDH sourcés. |
-| 2026-08-21 | Correction après revue Codex : deux épisodes manqués ajoutés (C24 Avignon, C25 Grenoble), conclusion erronée sur la couverture intégrale retirée — le 22 juillet reste sans entrée et la période n'est pas close. |
-| 2026-08-21 | Recadrage du traitement : remplacement du passage éditorial par une qualification minimale, proportionnée et assortie d'une règle d'arrêt. |
-| 2026-08-21 | Qualification minimale des 25 candidats : 20 admis, 3 incertains, 2 refusés, 0 rattaché, sans recherche complémentaire. |
-| 2026-08-21 | Relevé descriptif des catégories apparues sur les trois axes ; deux natures nouvelles et trois chevauchements signalés. |
-| 2026-08-22 | Journal des frictions ouvert : huit entrées retenues après filtre restrictif ; formulations obsolètes sur C21 corrigées. |
-| 2026-08-22 | Bilan de charge : effort concentré sur la recherche, l'accès aux sources et les corrections ; la qualification elle-même reste légère. |
-| 2026-08-22 | Correction après revue Codex : ajout de C26 Aurignac et C27 Bois-d'Arcy, corroborés mais omis — corpus porté à 27 candidats, 22 admis, 3 incertains, 2 refusés, 0 rattaché. |
-| 2026-08-22 | Révision minimale de la méthode validée par Codex puis par l'utilisateur : Phase 2 terminée. |
-| 2026-08-22 | Réorientation fonctionnelle : le corpus pilote devient un banc d'essai pour comparer des solutions simples de collecte avant toute architecture plus large. |
-| 2026-08-23 | Bloc 1 de la Phase 3 validé après revue Codex : contrat minimal de sortie à neuf champs et banc d'essai de 27 attentes (22 retrouve, 2 rejete, 3 incertain). Phase 3 ouverte. |
+| 2026-08-20 au 2026-08-24 | Cadrage, pilote méthodologique, constitution du banc d'essai et essais OpenAI, GDELT et Google News RSS. Détail conservé dans la roadmap archivée et les journaux du projet. |
+| 2026-10-14 | Reprise du projet : objectif recentré sur la construction de l'application ; Google News RSS retenu comme collecteur principal ; roadmap précédente archivée sans modification. |
+| 2026-10-14 | Clarification du passage en production : `prototype/` devient une mémoire des essais, le baromètre reçoit son propre socle à la racine, et le repérage de sources spécialisées est ajouté aux enrichissements éditoriaux. |
+| 2026-10-14 | Phase 1 de reprise terminée : documentation réalignée, environnement Python réparé, configuration racine créée et première commande du collecteur de production vérifiée sans réseau. |

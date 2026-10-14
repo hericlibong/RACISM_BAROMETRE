@@ -2,7 +2,19 @@
 
 Projet de baromètre éditorial consacré aux faits liés au racisme, à l'antisémitisme, à la xénophobie et au néonazisme qui circulent dans l'actualité en France.
 
-**État : Phase 2 en cours.** La recherche pilote a produit ses premiers candidats ; leur qualification minimale est la prochaine étape. Aucun développement ni choix technique n'est engagé.
+**État au 14 octobre 2026 : construction de l'application.** Le cadrage, le pilote méthodologique et la comparaison des collecteurs sont terminés. Google News RSS est retenu comme collecteur principal de départ ; le développement du baromètre commence dans le paquet `barometre/` à la racine.
+
+## Première commande
+
+La commande suivante prépare une collecte et affiche les requêtes sans effectuer d'appel réseau :
+
+```powershell
+.\.venv\Scripts\python.exe -m barometre collect --from 2026-10-01 --to 2026-10-14 --dry-run
+```
+
+Sans `--dry-run`, la collecte gratuite Google News RSS est enregistrée par défaut dans `data/raw/`.
+
+Le code de l'application se trouve dans `barometre/`. Le dossier `prototype/` conserve les essais historiques et n'est plus le lieu de développement du produit.
 
 ## Documentation
 
@@ -18,10 +30,10 @@ Projet de baromètre éditorial consacré aux faits liés au racisme, à l'antis
 - `docs/SAMPLES_EVENTS.md` : premier relevé brut servant de benchmark informel ;
 - `docs/FORGETED_SAMPLE.md` : cas supplémentaire sur la réactivation d'une ancienne séquence.
 
-Ces fichiers servent à mettre la méthode à l'épreuve. Ils ne constituent pas encore un corpus vérifié, dédupliqué, qualifié ou admis.
+Ces fichiers ont servi à mettre la méthode et les collecteurs à l'épreuve. Ils restent un benchmark historique et ne constituent pas la base vivante de l'application.
 
 ## Principe directeur
 
 **Les faits façonnent la méthode ; la méthode ne doit pas façonner artificiellement les faits que le baromètre est capable de voir.**
 
-La prochaine étape est la qualification minimale des candidats déjà trouvés. Les outils, le stockage et l'automatisation seront choisis seulement après cette expérience réelle.
+La suite active est décrite dans `docs/ROADMAP.md` : construire le moteur de collecte, transformer les articles en événements, puis réaliser l'application et sa visualisation.

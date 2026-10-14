@@ -2,7 +2,7 @@
 
 Le corpus pilote doit reproduire le futur travail du baromètre : chercher réellement ce qui circule, conserver largement les candidats, puis apprendre de leur examen.
 
-> **État : en cours.** La recherche sur la fenêtre du **20 juillet–20 août 2026** a produit un premier ensemble de candidats. Leur qualification minimale est la prochaine étape. `SAMPLES_EVENTS.md` et `FORGETED_SAMPLE.md` restent un benchmark informel, pas un corpus admis.
+> **État : terminé le 22 août 2026.** La recherche sur la fenêtre du **20 juillet–20 août 2026** a produit 27 cas qualifiés et un benchmark historique utilisé ensuite pour comparer les collecteurs. Ce pilote reste une référence méthodologique ; le développement actif de l'application est suivi dans `ROADMAP.md`.
 
 ## 1. Objectif
 

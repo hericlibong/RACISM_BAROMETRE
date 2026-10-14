@@ -1,0 +1,7 @@
+# Dépendances directes du banc d'essai du Bloc 2.
+# openai      : SDK officiel, pour la solution A (OpenAI web search)
+# httpx       : client HTTP, pour Brave Search (B) et GDELT (C)
+# python-dotenv : lecture du .env local, jamais commité
+openai==3.3.1
+httpx==0.28.1
+python-dotenv==1.2.3

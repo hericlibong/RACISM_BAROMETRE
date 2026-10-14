@@ -1,0 +1,12 @@
+[project]
+name = "racism-barometre"
+version = "0.1.0"
+description = "Collecte et restitution des faits racistes médiatisés en France"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+racism-barometre = "barometre.__main__:main"
+
+[tool.unittest]
+start-directory = "tests"

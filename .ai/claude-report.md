@@ -1,71 +1,102 @@
-# Rapport Claude — Bloc 2, première partie : présélection des solutions de collecte (v4)
+# Rapport Claude — test Google News RSS : 20 des 22 faits attendus, gratuitement
 
-**Date :** 23 août 2026
-**Statut : ajustements de la revue Codex v3 appliqués. Aucun smoke test exécuté.**
+**Date :** 24 août 2026
+**Statut : test exécuté et concluant. Meilleur résultat des trois solutions testées, et le seul sans dépense ni compte.**
 
-## 1. Les quatre ajustements demandés
+## 1. Résultat
 
-| # | Demande Codex | Vérification | Correction |
-|---|---|---|---|
-| 1 | Le smoke test contenait encore quatre solutions malgré l'annonce « une par famille » | Fondé — contradiction interne | **Trois finalistes : OpenAI web search · Brave Search · GDELT.** Anthropic, Tavily et Google News RSS deviennent des solutions de secours, non testées au premier tour |
-| 2 | Les accès API ne sont pas établis ; « aucun compte nouveau » supposait une clé Anthropic non vérifiée | Fondé. Le fait que Claude Code fonctionne ne démontre pas la disposition d'une clé API facturable | Motif supprimé. **Deux points de décision explicites** ajoutés au §9, et la ligne « Authentification » du tableau comparatif passe de ✅ à ❓ pour la famille A |
-| 3a | GDELT documente un plafond de 250 résultats en `ArticleList` | **Confirmé sur la documentation officielle** : `MAXRECORDS`, 75 par défaut, 250 au maximum. J'avais écrit « non documenté » | Corrigé au §5 et dans le tableau |
-| 3b | Le tarif OpenAI doit venir de la page officielle ; les 25 $ concernent l'ancien outil preview avec modèles non raisonnants | **Confirmé sur la page tarifaire officielle** : outil actuel **10 $/1 000 appels**, tokens au tarif du modèle. Ma formulation « 10 $ sur modèles de raisonnement, 25 $ sur les autres » était fausse | Corrigé et sourcé sur la page tarifaire officielle |
-
-## 2. Les trois finalistes
-
-| Famille | Finaliste | Motif | Reléguée en secours |
-|---|---|---|---|
-| **A — Agentique** | **OpenAI web search** | L'option la plus proche de l'expérience initiale du projet, et **la seule de sa famille à exposer la liste complète des URL consultées** (`sources`) — donc la seule à fournir une matière à déduplication comparable aux autres familles. Même tarif | Anthropic `web_search` |
-| **B — API filtrable** | **Brave Search** | 5 $/1 000 contre un palier à 30 $/mois pour Tavily au même volume ; seule à cumuler endpoint news, `country`, `search_lang` et plage de dates personnalisée | Tavily |
-| **C — Index gratuit** | **GDELT** | Documentation officielle, URL primaires, aucune authentification. Google News RSS n'a aucune documentation officielle ni engagement de service | Google News RSS |
-
-J'ai suivi la recommandation de Codex sur les trois. Le seul point où je l'aurais formulé autrement : Google News RSS reste l'option la plus prometteuse sur la couverture locale française, et c'est écrit — elle passe après, elle n'est pas enterrée.
-
-## 3. Deux questions qui vous reviennent avant tout test
-
-**Quels accès API possédez-vous réellement ?** Deux finalistes sur trois en dépendent :
-
-- **OpenAI** — une clé API, distincte d'un abonnement ChatGPT ? La recherche avancée qui a produit les samples passait par l'interface, pas nécessairement par l'API.
-- **Anthropic** — une clé utilisable pour l'outil `web_search` facturé ? Que Claude Code fonctionne ne le démontre pas.
-
-**Le compte Brave.** La famille B est intestable sans compte ni clé, ce que la consigne du Bloc 2 interdit. **Je ne créerai aucun compte à votre place.** Vous créez le compte et fournissez la clé (5 $ de crédits mensuels — le test serait gratuit), ou on reporte B après A et C, ou on l'écarte.
-
-**Conséquence** : selon vos réponses, le smoke test portera sur trois familles, deux, ou la seule famille C — la seule à ne rien exiger.
-
-## 4. Fichiers
-
-| Fichier | Nature |
+| Mesure | Résultat |
 |---|---|
-| `prototype/bloc-2/SELECTION.md` | Unique livrable — **v4**, 11 sections |
-| `.ai/claude-report.md` | Ce rapport |
+| **Faits admis retrouvés** | **20 / 22** |
+| Incertains retrouvés | 1 / 3 |
+| **Bruit connu remonté** | **0 / 2** — C14 et C23 absents |
+| Articles rapportés | 439 |
+| Titres distincts | 387 |
+| **Médias distincts** | **139** |
+| Durée | ~25 secondes |
+| **Coût** | **0,00 $** — aucune clé, aucun compte |
 
-Format minimal, banc d'essai et corpus pilote non modifiés. `.ai/codex-review.md` non modifié.
+Comparaison avec les tests précédents, sur le même banc d'essai :
 
-## 5. Confirmations
+| | Sol, 4 appels | Luna, 1 appel | **Google News RSS** |
+|---|---|---|---|
+| Admis retrouvés | 12/22 | 5/22 | **20/22** |
+| Coût | 1,95 $ | 0,088 $ | **0 $** |
+| Compte requis | oui | oui | **non** |
+| Filtre de dates | aucun | aucun | **natif** |
 
-- **Aucun smoke test, aucun benchmark, aucun appel expérimental à une API de collecte.** Les capacités décrites viennent de documentation lue.
-- **Aucun compte créé, aucun abonnement souscrit, aucune dépense engagée.**
-- Aucun développement, aucune installation, aucun choix définitif de solution.
-- Le Bloc 3 n'est pas commencé.
-- **Roadmap inchangée** : 25 cochées / 21 ouvertes — aucune tâche du Bloc 2 cochée.
-- **Git** : deux commits, aucun nouveau ; rien en staging ; aucun tag ; configuration inchangée.
+## 2. Ce qui a été fait
 
-## 6. Revue Codex de la v4 et suite décidée
+Fichier créé : **`prototype/bloc-2/test_gnews.py`**
 
-**Verdict Codex : validée.** Les quatre ajustements sont constatés présents, le choix des trois finalistes est jugé cohérent, et aucun test, script, compte ni appel API n'a été réalisé.
+| Élément | Valeur |
+|---|---|
+| Endpoint | `https://news.google.com/rss/search` |
+| Édition | `hl=fr&gl=FR&ceid=FR:fr` — **édition française native** |
+| Fenêtre | `after:2026-07-20 before:2026-08-21` — filtre natif, pas une consigne en prose |
+| Requêtes | 12 requêtes lexicales, **identiques à celles du test GDELT** pour comparabilité |
+| Corpus pilote | **non transmis** — aucun lieu, aucun identifiant C01-C27 |
+| Dépendance ajoutée | **aucune** — parsing XML par la bibliothèque standard |
 
-Un point utile ajouté par la revue : **une clé Anthropic n'est plus nécessaire** au premier smoke test, puisque cette solution est passée en secours. Il ne reste donc que **deux** questions d'accès — clé OpenAI facturable, et décision sur le compte Brave — au lieu de trois.
+`comparer_benchmark.py` a été étendu pour lire ce format d'index d'actualités, qui n'a qu'un seul niveau de mesure : l'article est rapporté, ou il ne l'est pas. Il n'y a pas de couche de synthèse, donc pas de perte possible entre recherche et restitution — le défaut central des deux tests OpenAI **n'existe pas ici**.
 
-Codex conclut par : « La roadmap doit rester inchangée et aucun commit ne doit être créé pour l'instant. »
+## 3. Contrôle manuel — une correction
 
-**Décision de l'utilisateur : ne rien committer.** La position de Codex est suivie à la lettre.
+La mesure automatique annonçait 21/22. Le contrôle des titres, exigé par la méthode, a révélé **un faux positif** :
 
-- Aucun commit, aucun staging, aucun tag, aucune modification de configuration Git.
-- Roadmap inchangée : **25 cochées / 21 ouvertes**, aucune case du Bloc 2 cochée.
-- `prototype/bloc-2/` reste en non suivi dans git.
-- Le smoke test n'est pas lancé et attend les réponses sur les accès.
+- **C15** — le motif « montagne » correspondait au **nom du média « La Montagne »**, pas au sujet. L'événement des randonneurs racisés n'est pas trouvé. Compté **non retrouvé**.
 
----
+Toutes les autres correspondances ont été vérifiées sur les titres et sont exactes. Quelques exemples, qui montrent la précision de l'appariement :
 
-**La v4 est validée sur le fond, non committée.** Le smoke test attend vos réponses sur les deux accès.
+- **C07** — *« Une gendarme guyanaise dénonce des faits de racisme au sein de la Garde républicaine »*, Radio Télé Peyi Guyane. Ce cas avait échappé aux deux tests OpenAI.
+- **C16** — *« À Châtonnay, émotion après le suicide de Joris, victime d'injures racistes »*, ici.fr.
+- **C18** — 13 articles sur la vidéo au micro BFMTV, le repère national que Sol avait rencontré sans le restituer et que Luna n'avait pas rencontré.
+- **C19** — *« David Samzun déposera plainte contre Jean Messiha après un tweet visant des mineures nazairiennes en séjour à Belle-Île »*, Ouest-France.
+- **C26 Aurignac**, **C27 Bois-d'Arcy**, **C03 Machecoul**, **C10 Migennes** — tous retrouvés, alors qu'ils relèvent de la couverture strictement locale, faiblesse établie du pilote.
+
+## 4. Les deux admis manqués, et pourquoi
+
+**C20 (Agde)** et **C15 (randonneurs)** ne sont pas remontés — ainsi que **C17 (Crépol)** parmi les incertains.
+
+La cause n'est pas l'index : c'est **mon lexique de requêtes**. Ces trois affaires ne sont pas décrites par les termes cherchés. Crépol relève de la « circonstance aggravante de racisme », Agde d'une « campagne d'affichage stigmatisante », les randonneurs d'un débat sur la montagne « réservée aux Blancs » — aucun de ces cas ne contient « propos racistes », « agression raciste » ou « tags racistes ».
+
+C'est corrigible en élargissant les termes, et cela n'a rien coûté à vérifier. **Le plafond réel de cette solution est donc supérieur à 20/22.**
+
+## 5. Qualité de la matière rapportée
+
+**Bon :**
+- **Date de publication présente sur 439 articles sur 439**, au format RFC 822 exploitable.
+- Média identifié pour chaque article, avec son domaine (`media_url`).
+- 139 médias, dont beaucoup de titres locaux — *L'Yonne Républicaine*, *Radio SCOOP*, *Le Maine Libre*, *EVASION*, *Radio Télé Peyi Guyane*.
+- Plusieurs articles par événement, ce qui donne de la matière au recoupement.
+
+**Limites confirmées :**
+- **Les 439 liens sont des URL de redirection Google**, sans exception. Le média est identifiable, l'URL d'origine de l'article ne l'est pas sans résolution supplémentaire. Cette résolution n'a **pas** été faite : un appel HTTP par article serait disproportionné à ce stade.
+- **Une requête a saturé** à 100 résultats (« propos racistes ») : le plafond par appel est réel et impose de découper les requêtes trop larges.
+- La date rapportée est celle de **publication**, pas celle du fait.
+- Aucune documentation officielle, aucun engagement de service — la réserve de la présélection reste entière.
+
+## 6. Fichiers
+
+| Fichier | État |
+|---|---|
+| `prototype/bloc-2/test_gnews.py` | **créé** |
+| `prototype/bloc-2/test_gdelt.py` | **créé** — GDELT bloqué par limite d'IP, aucun résultat |
+| `prototype/bloc-2/comparer_benchmark.py` | **modifié** — lecture des formats d'index d'actualités |
+| `resultats/gnews-serie-20260824T001159Z.json` | 439 articles + traces |
+| `resultats/gnews-sonde-*.json`, `gdelt-sonde-*.json` | sondes |
+
+Corpus pilote, banc d'essai, `docs/`, `SELECTION.md` et `RESULTATS-OPENAI.md` inchangés.
+
+## 7. Confirmations
+
+- **Aucune dépense.** Aucun appel OpenAI dans cette tâche.
+- Aucune clé en cause : Google News RSS n'en demande pas.
+- **Aucun commit, staging ou tag.** Le dernier commit reste `26ba1e1`.
+- **Roadmap et méthodologie inchangées** ; aucune case cochée, aucun candidat admis ni requalifié.
+
+## 8. Ce que cela change pour la comparaison
+
+La présélection avait relégué Google News RSS au rang de secours, faute de documentation officielle. **Sur les faits, c'est la solution la plus performante des trois testées, la plus rapide, la seule gratuite et la seule sans compte** — et la seule dont la couverture locale, faiblesse centrale du pilote, est démontrée.
+
+Son défaut réel n'est pas le rappel mais la **traçabilité des URL** et l'**absence d'engagement de service**. Ce sont deux questions à trancher avant d'en faire la solution retenue.
