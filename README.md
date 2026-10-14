@@ -12,7 +12,7 @@ La commande suivante prépare une collecte et affiche les requêtes sans effectu
 .\.venv\Scripts\python.exe -m barometre collect --from 2026-10-01 --to 2026-10-14 --dry-run
 ```
 
-Sans `--dry-run`, la collecte gratuite Google News RSS est enregistrée par défaut dans `data/raw/`.
+Sans `--dry-run`, la collecte gratuite Google News RSS est enregistrée par défaut dans `data/raw/`. Relancer la même fenêtre met à jour le même fichier sans multiplier les articles déjà présents.
 
 Le code de l'application se trouve dans `barometre/`. Le dossier `prototype/` conserve les essais historiques et n'est plus le lieu de développement du produit.
 

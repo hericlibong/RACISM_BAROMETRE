@@ -74,19 +74,19 @@ Le dossier `prototype/` conserve désormais les essais, leurs scripts et leurs r
 
 ## Phase 2 — Construire le moteur de collecte
 
-**État : non lancée.** L'objectif est un collecteur réutilisable, pas un nouveau smoke test.
+**État : terminée le 14 octobre 2026.** Le collecteur de production a été exécuté deux fois sur la fenêtre du 10 au 14 octobre 2026. Il a conservé 163 articles uniques provenant de 85 médias ; la seconde exécution n'a ajouté que les deux articles nouvellement apparus dans l'index. Le périmètre est fixe : France et espace médiatique francophone. La langue et le pays ne sont pas des options de configuration du produit.
 
-- [ ] Implémenter dans le code de l'application un module de collecte configurable fondé sur les enseignements du script Google News RSS expérimental, sans faire dépendre le produit du dossier `prototype/`.
-- [ ] Sortir les requêtes, la langue, le pays et la fenêtre temporelle du code afin de pouvoir les modifier sans réécrire le collecteur.
-- [ ] Reprendre le lexique testé et ajouter les formulations correspondant aux manques déjà observés, notamment les campagnes ou communications stigmatisantes, les circonstances aggravantes et les séquences de réponses publiques.
-- [ ] Collecter pour chaque article : titre, média, date de publication, lien Google, domaine du média, requête d'origine et horodatage de collecte.
-- [ ] Conserver la réponse brute ou les données suffisantes pour rejouer le traitement sans rappeler Google News.
-- [ ] Rendre la collecte idempotente : relancer une même fenêtre ne doit pas multiplier les mêmes articles.
-- [ ] Détecter et consigner les requêtes qui atteignent le plafond de résultats.
-- [ ] Définir une stratégie proportionnée pour les URL : conserver d'abord le lien Google et le domaine du média, puis résoudre l'URL d'origine seulement lorsque cela est utile et fiable.
-- [ ] Exécuter la collecte sur une fenêtre récente et vérifier le fonctionnement technique, sans refaire une qualification exhaustive du benchmark historique.
+- [x] Implémenter dans le code de l'application un module de collecte configurable fondé sur les enseignements du script Google News RSS expérimental, sans faire dépendre le produit du dossier `prototype/`.
+- [x] Sortir les requêtes du code et rendre la fenêtre temporelle paramétrable ; conserver dans le collecteur l'édition française et le ciblage France, qui définissent le périmètre du baromètre.
+- [x] Reprendre le lexique testé et ajouter les formulations correspondant aux manques déjà observés, notamment les campagnes ou communications stigmatisantes, les circonstances aggravantes et les séquences de réponses publiques.
+- [x] Collecter pour chaque article : titre, média, date de publication, lien Google, domaine du média, requêtes d'origine et horodatages de première et dernière détection.
+- [x] Conserver dans la sortie les données suffisantes pour rejouer les traitements sans rappeler Google News : articles normalisés, requêtes d'origine, fenêtre, passages et traces de requêtes.
+- [x] Rendre la collecte idempotente : relancer une même fenêtre ne multiplie pas les mêmes articles et ajoute seulement ceux nouvellement indexés.
+- [x] Détecter et consigner les requêtes qui atteignent le plafond de résultats.
+- [x] Définir une stratégie proportionnée pour les URL : conserver d'abord le lien Google et le domaine du média, puis résoudre l'URL d'origine seulement lorsque cela est utile et fiable.
+- [x] Exécuter la collecte sur une fenêtre récente et vérifier le fonctionnement technique, sans refaire une qualification exhaustive du benchmark historique.
 
-**Sortie de phase :** une commande reproductible produit un ensemble d'articles datés, traçables et réutilisables pour une période donnée.
+**Sortie de phase : atteinte le 14 octobre 2026.** Une commande reproductible produit un ensemble d'articles datés, traçables et réutilisables pour une période donnée. Le fichier local de contrôle contient deux passages, 163 articles uniques, 85 médias, aucune métadonnée essentielle manquante et 18 articles reliés à plusieurs requêtes.
 
 ## Phase 3 — Passer des articles aux événements
 
@@ -188,3 +188,4 @@ Terminer la **Phase 1 — Consolider le point de reprise**, puis commencer immé
 | 2026-10-14 | Reprise du projet : objectif recentré sur la construction de l'application ; Google News RSS retenu comme collecteur principal ; roadmap précédente archivée sans modification. |
 | 2026-10-14 | Clarification du passage en production : `prototype/` devient une mémoire des essais, le baromètre reçoit son propre socle à la racine, et le repérage de sources spécialisées est ajouté aux enrichissements éditoriaux. |
 | 2026-10-14 | Phase 1 de reprise terminée : documentation réalignée, environnement Python réparé, configuration racine créée et première commande du collecteur de production vérifiée sans réseau. |
+| 2026-10-14 | Phase 2 terminée : collecteur Google News RSS exécuté deux fois sur une fenêtre récente ; 163 articles uniques issus de 85 médias, déduplication persistante vérifiée et périmètre France/français maintenu comme réglage fixe. |

@@ -70,8 +70,11 @@ def main(argv: list[str] | None = None) -> int:
 
         print(
             f"{result['article_count']} article(s) uniques, "
+            f"dont {result['new_article_count']} nouveau(x), "
             f"{result['media_count']} média(s), {result['query_count']} requête(s)."
         )
+        if result["saturated_query_count"]:
+            print(f"Attention : {result['saturated_query_count']} requête(s) ont atteint 100 résultats.")
         print(f"Résultat : {output}")
         return 0
 
