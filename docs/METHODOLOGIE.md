@@ -47,6 +47,10 @@ Les décisions de travail restent simples : **admis**, **refusé**, **conservé 
 
 Un candidat n'est **incertain** que lorsque l'incertitude affecte réellement son admission, son appartenance au périmètre ou sa formulation centrale. Une procédure en cours n'y suffit pas : le pilote a admis plusieurs faits dont l'enquête n'était pas close.
 
+Pour la production courante du baromètre, **seul un événement admis entre dans le comptage**. Tout article non encore examiné reste explicitement **à vérifier** : l'absence de plusieurs reprises médiatiques ne permet jamais de l'écarter. Un dossier refusé peut être conservé comme contexte ou analyse sans contribuer à la courbe.
+
+La publication récente d'un article sur un acte ou un propos ancien ne transforme pas ce fait ancien en événement courant. Elle peut être conservée comme reprise, analyse ou réaction. Elle n'entre dans le comptage de la période que si l'examen établit un fait, un propos ou un épisode nouveau relevant directement de la ligne éditoriale ; la seule redécouverte médiatique d'archives ne suffit pas.
+
 ## 3. Événement, épisode et reprise
 
 L'article n'est pas l'unité de comptage. Plusieurs articles peuvent parler du même fait.
@@ -95,7 +99,33 @@ Un média peut établir qu'une accusation a été formulée sans établir pour a
 
 > **Lorsqu'une qualification raciste est portée par une victime, une association, une institution ou une autre source et n'est pas établie autrement, indiquer clairement qui porte cette qualification et, le cas échéant, qui la conteste.**
 
-### 5.2 État de connaissance du fait
+### 5.2 Rôle d'un article dans le baromètre
+
+Un article retrouvé par la collecte n'est pas automatiquement la preuve d'un nouvel événement. Son rôle doit être distingué de la nature du fait éventuellement décrit. Quatre rôles de travail suffisent pour commencer :
+
+- **source d'événement** : l'article rapporte un acte, un propos ou une situation identifiable qui peut être retenu dans le baromètre ;
+- **réaction** : l'article commente, condamne, soutient ou prolonge un événement identifiable ; il lui est rattaché sans créer à lui seul une unité de comptage supplémentaire ;
+- **analyse** : l'article traite du phénomène de manière générale sans documenter un fait précis ; il peut être conservé pour l'enrichissement éditorial, mais reste hors du comptage des événements ;
+- **hors sujet** : l'article ne relève pas du périmètre après examen et n'est pas exploité par le baromètre.
+
+Un même article peut rapporter un fait et contenir une analyse ou une réaction. On retient alors son rôle utile pour le dossier concerné, sans multiplier artificiellement les événements.
+
+Une dénonciation, une chronique ou une prise de position médiatique ne devient donc pas automatiquement un événement. Si elle renvoie à un fait identifiable, elle est rattachée à ce fait. Si elle reste générale, elle est conservée comme analyse sans entrer dans le comptage. En revanche, lorsque le propos public rapporté constitue lui-même un fait relevant du périmètre, ce propos peut être traité comme événement et les commentaires qu'il suscite comme réactions associées.
+
+Le titre peut servir au premier tri, mais il ne suffit pas lorsque le rôle de l'article ou l'existence d'un fait précis reste ambigu. L'examen s'arrête dès que le rôle, le rattachement éventuel et la décision de comptage peuvent être établis correctement.
+
+#### Qui effectue la revue ?
+
+La file technique n'est pas une liste de travail à déléguer telle quelle à l'utilisateur. Le traitement de premier niveau appartient au moteur et à l'équipe éditoriale qui l'exploite :
+
+1. éliminer directement les faux positifs manifestes (programme télévisé, finance, sport étranger sans épisode français, etc.) ;
+2. lire l'article lorsqu'un fait relevant du baromètre reste plausible ;
+3. faire une recherche complémentaire courte uniquement si elle bloque l'admission, le rattachement, la classification ou la formulation ;
+4. ne soumettre à un arbitrage humain que les rares cas où une ambiguïté éditoriale réelle subsiste, avec la question précise à trancher.
+
+Une mention « à vérifier » sans motif n'est donc pas un résultat final acceptable. L'automatisation peut proposer un rôle, mais elle ne valide pas seule l'admission d'un événement.
+
+### 5.3 État de connaissance du fait
 
 Les termes suivants peuvent être utilisés comme vocabulaire de travail, sans constituer encore une échelle définitive :
 
@@ -113,7 +143,9 @@ La corroboration s'évalue au niveau du dossier en comparant les documents. Elle
 
 ## 6. Classification progressive
 
-Les axes **nature**, **cible** et **contexte** constituent un point de départ utile, pas une grille qui limite la recherche.
+Les axes **nature**, **personnes visées** et **contexte** constituent un point de départ utile, pas une grille qui limite la recherche.
+
+Dans la sortie destinée à l'application, le phénomène reste nommé **racisme**. Les formulations « racisme anti-Noirs », « racisme anti-Arabes » ou « racisme anti-Blancs » ne constituent pas des catégories publiques. Lorsque l'information est utile et suffisamment établie, un champ séparé décrit sobrement les **personnes visées** (par exemple : « personnes noires », « personnes perçues comme arabes »). Cette description ne préjuge ni de l'identité de l'auteur ni de l'existence de groupes homogènes.
 
 Pendant le pilote :
 

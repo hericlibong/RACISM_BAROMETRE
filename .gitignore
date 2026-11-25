@@ -25,6 +25,10 @@ __pycache__/
 
 # Données produites localement par la collecte
 data/raw/*.json
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
+data/backups/*.sqlite
 
 # Sorties brutes historiques des essais (peuvent contenir des identifiants opaques)
 prototype/bloc-2/resultats/

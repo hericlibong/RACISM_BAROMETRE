@@ -8,5 +8,8 @@ dependencies = []
 [project.scripts]
 racism-barometre = "barometre.__main__:main"
 
+[tool.setuptools.package-data]
+barometre = ["queries.txt", "webapp.css"]
+
 [tool.unittest]
 start-directory = "tests"

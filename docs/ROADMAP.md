@@ -90,43 +90,51 @@ Le dossier `prototype/` conserve désormais les essais, leurs scripts et leurs r
 
 ## Phase 3 — Passer des articles aux événements
 
-**État : non lancée.** Cette phase transforme la collecte médiatique en matière exploitable par le baromètre.
+**Mise à jour du 31 octobre 2026 : socle de la phase terminé.** Le second lot (281 résultats RSS, dont 277 articles nouveaux en base) a été traité ; une source complémentaire de presse a été ajoutée pendant la qualification. La base contient désormais 441 articles, 2 doublons exacts et 36 dossiers : 30 admis au comptage, 4 incertains hors comptage et 2 anciens hors comptage. Quatre articles gardent une question précise de contenu ou de datation ; ce travail éditorial courant ne bloque pas l'interface. Les 37 propositions de regroupement ont été arbitrées. Voir le compte rendu `data/processed/review-2026-10-15-2026-10-29.md` et l'export cumulé `data/processed/events-2026-10-10-2026-10-29.json`. Le tri de ce lot a été réalisé éditorialement avec assistance ; il ne constitue pas encore un moteur autonome de lecture et d'admission, prévu pour le fonctionnement récurrent.
 
-- [ ] Définir le support de stockage le plus simple pour les articles, les événements et leurs relations ; SQLite est l'option de départ à confirmer lors de l'implémentation.
-- [ ] Importer les articles collectés sans perte de leur provenance.
-- [ ] Regrouper les doublons exacts et proposer le rattachement des articles parlant du même fait.
-- [ ] Permettre la correction manuelle d'un regroupement sans modifier les données brutes.
-- [ ] Produire pour chaque événement les informations minimales déjà établies : identifiant, date du fait, lieu, résumé, nature, cible ou dimension, contexte, sources et relation éventuelle.
-- [ ] Distinguer la date de publication de la date du fait et conserver une précision variable lorsqu'une date exacte n'est pas connue.
-- [ ] Générer un résumé ou commentaire court qui attribue clairement les accusations, contestations ou qualifications lorsqu'elles ne sont pas établies directement.
-- [ ] Écarter uniquement le hors-sujet manifeste ; ne pas créer une procédure d'admission lourde en amont.
-- [ ] Vérifier le traitement sur un ensemble réduit d'événements réels, puis corriger seulement les erreurs qui empêchent leur regroupement, leur classement ou leur lecture.
+**Point d'étape conservé du premier lot (14–15 octobre 2026).** Les 163 articles avaient été importés dans SQLite sans modifier le JSON brut : 1 doublon exact repéré et 10 rapprochements prudents proposés. Les 162 articles non doublons avaient reçu un rôle, avec 11 dossiers d'événement : 8 admis au comptage, 2 anciens hors comptage et 1 incertain. La file `candidates_to_review` était alors vide ; les collectes suivantes peuvent l'alimenter uniquement avec des questions motivées après le premier tri.
 
-**Sortie de phase :** une base d'événements reliés à leurs articles sources, avec une classification et une formulation exploitables.
+- [x] Définir le support de stockage le plus simple pour les articles, les événements et leurs relations : SQLite est retenu pour la base de travail locale.
+- [x] Importer les articles collectés sans perte de leur provenance.
+- [x] Attribuer à chaque article un rôle de travail simple — source d'événement, réaction, analyse ou hors sujet — afin que les commentaires et analyses ne créent pas artificiellement d'événements comptabilisés.
+- [x] Examiner aussi les articles isolés : le volume de reprises ne constitue ni un critère d'admission ni un ordre de priorité éditorial.
+- [x] Regrouper les doublons exacts et proposer le rattachement des articles parlant du même fait ; les rapprochements restent des propositions non comptabilisées.
+- [x] Permettre la correction manuelle d'un regroupement sans modifier les données brutes.
+- [x] Produire pour chaque événement les informations minimales déjà établies : identifiant, date du fait, lieu, résumé, nature, personnes visées, contexte, sources et relation éventuelle ; préciser les dates inconnues ou approximatives sans les inventer.
+- [x] Distinguer la date de publication, la date du fait et la date de l'épisode d'actualité, avec une précision variable lorsqu'une date exacte n'est pas connue.
+- [x] Produire un résumé ou commentaire court qui attribue clairement les accusations, contestations ou qualifications lorsqu'elles ne sont pas établies directement ; première production éditoriale enregistrée, automatisation ultérieure.
+- [x] Écarter uniquement le hors-sujet manifeste ; ne pas créer une procédure d'admission lourde en amont.
+- [x] Vérifier le traitement sur un ensemble réduit d'événements réels, puis corriger seulement les erreurs qui empêchent leur regroupement, leur classement ou leur lecture : trois dossiers et 45 articles ont constitué le premier lot.
+
+**Sortie de phase : atteinte pour le socle le 31 octobre 2026.** Une base d'événements reliés à leurs articles sources, avec une classification et une formulation exploitables. Les dossiers incertains restent visibles et exclus du comptage ; la revue éditoriale se poursuit au fil des collectes.
 
 ## Phase 4 — Construire l'application minimale
 
-**État : non lancée.** La première version doit rendre le baromètre consultable avant de chercher sa forme graphique définitive.
+**Responsable : Codex. État : version locale livrée le 24 novembre 2026.** La répartition convenue avec Claude confie à Codex les phases 3, 4 et 6. Claude et l’utilisateur prennent la direction artistique, la visualisation, la relecture et l’enrichissement éditorial.
 
-- [ ] Choisir une pile technique légère adaptée à une application locale puis publiable.
-- [ ] Créer une vue chronologique des événements.
-- [ ] Créer une fiche d'événement avec résumé, classification, dates, lieu et articles sources.
-- [ ] Ajouter des filtres par période, nature, communauté ou dimension visée, contexte et territoire.
-- [ ] Afficher les nombres d'événements par jour, semaine et mois sans les confondre avec le nombre d'articles.
-- [ ] Permettre la consultation et la correction des regroupements et classifications.
-- [ ] Afficher clairement la méthode, le périmètre et la date de dernière collecte.
-- [ ] Vérifier que l'application reste utilisable avec plusieurs articles rattachés au même événement.
+- [x] Utiliser Python et SQLite existants pour lancer une application web locale.
+- [x] Créer une vue chronologique des événements.
+- [x] Créer une fiche d'événement avec résumé, classification, dates, lieu et articles sources.
+- [x] Ajouter des filtres par période, nature, personnes visées, contexte et territoire.
+- [x] Afficher les nombres d'événements par jour, semaine et mois et signaler les dates trop imprécises pour le découpage choisi.
+- [x] Permettre la consultation et la correction des regroupements et classifications.
+- [x] Fournir la file de relecture et l’ajout manuel avec source. L’aperçu public est réservé aux fiches dont la version a été validée par une personne.
+- [x] Expliquer les champs et les commandes dans la fiche de relecture, prévisualiser son rendu avant validation et rattacher une source par son lien direct.
+- [x] Afficher la méthode, le périmètre, les fenêtres intégrées et la date de dernière collecte.
+- [x] Vérifier la consultation d’un dossier lié à plusieurs articles, dont celui de Trappes et La Verrière avec 70 articles.
 
-**Sortie de phase :** une application utilisable permet d'explorer les événements, leurs catégories et leurs sources dans le temps.
+**Sortie de phase :** application locale utilisable pour explorer et relire les événements. Le déploiement est prévu en phase 6.
 
 ## Phase 5 — Concevoir la visualisation du baromètre
 
-**État : non lancée.** Le design est décidé sur l'application et ses données réelles, pas à l'avance.
+**Responsables : Claude et l’utilisateur.** La chronologie de la phase 4 et les données réelles servent de base pour choisir la visualisation et la direction artistique.
 
 - [ ] Définir les questions que la visualisation doit permettre de lire immédiatement.
 - [ ] Prototyper une timeline simple comme référence de lisibilité.
 - [ ] Prototyper la heatmap ou heatmap-timeline envisagée initialement.
 - [ ] Comparer les représentations sur les mêmes données : évolution temporelle, densité, catégories, filtres et accès aux faits.
+- [ ] Définir le contenu de l’infobulle et de la fiche complète à partir des champs publics disponibles. Si une carte est retenue, décider du niveau de localisation à partir des lieux documentés.
+- [ ] Si la visualisation regroupe les faits par nature ou contexte, relever les libellés récurrents et proposer des choix éditables à la relecture. Les champs actuels sont en texte libre.
 - [ ] Retenir une représentation principale et, seulement si utile, une représentation complémentaire.
 - [ ] Vérifier que les variations affichées décrivent les événements documentés et non une mesure exhaustive du racisme en France.
 - [ ] Intégrer la visualisation retenue dans l'application.
@@ -178,7 +186,7 @@ La heatmap, les réseaux sociaux et l'analyse approfondie de la circulation ne c
 
 ## Prochaine étape
 
-Terminer la **Phase 1 — Consolider le point de reprise**, puis commencer immédiatement le moteur de collecte Google News RSS. Aucune nouvelle comparaison générale de solutions n'est requise avant cela.
+Passer à la **phase 5 — Visualisation** avec Claude et l’utilisateur. La relecture humaine des dossiers se poursuit dans l’application locale. Codex reprendra la collecte récurrente et le déploiement en phase 6.
 
 ## Historique
 
@@ -189,3 +197,6 @@ Terminer la **Phase 1 — Consolider le point de reprise**, puis commencer immé
 | 2026-10-14 | Clarification du passage en production : `prototype/` devient une mémoire des essais, le baromètre reçoit son propre socle à la racine, et le repérage de sources spécialisées est ajouté aux enrichissements éditoriaux. |
 | 2026-10-14 | Phase 1 de reprise terminée : documentation réalignée, environnement Python réparé, configuration racine créée et première commande du collecteur de production vérifiée sans réseau. |
 | 2026-10-14 | Phase 2 terminée : collecteur Google News RSS exécuté deux fois sur une fenêtre récente ; 163 articles uniques issus de 85 médias, déduplication persistante vérifiée et périmètre France/français maintenu comme réglage fixe. |
+| 2026-10-30 | Collecte de rattrapage du 15 au 29 octobre : 281 articles RSS, 138 médias, 15 requêtes, aucune requête saturée. |
+| 2026-10-31 | Revue du second lot, 25 nouveaux dossiers dont 22 admis, propositions de regroupement arbitrées, questions résiduelles motivées et export cumulé ; socle de phase 3 terminé, prochaine étape : application minimale. |
+| 2026-11-24 | Phase 4 locale livrée avec chronologie, fiches, sources, filtres, compteurs et relecture humaine. La répartition avec Claude est reprise dans le périmètre de la phase. |
